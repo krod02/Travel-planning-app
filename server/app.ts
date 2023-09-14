@@ -1,7 +1,7 @@
 import express, { Application } from 'express';
 import cors from 'cors';
 import ErrorMiddleware from '@/middleware/error.middleware';
-import Controller from '@/utils/interfaces/controller.interface';
+import Controller from '@/utils/interfaces/controller.interface' ;
 import compression from 'compression';
 import mysql from 'mysql2/promise';
 
