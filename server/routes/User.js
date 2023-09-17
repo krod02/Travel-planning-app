@@ -1,5 +1,6 @@
 import express from 'express';
 import controller from '../controllers/User.js';
+import e from 'express';
 
 const router = express.Router();
 
@@ -26,3 +27,5 @@ router.post('/login', async (req, res, next) => {
     next(err);
   }
 });
+
+export default router;

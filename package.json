@@ -2,9 +2,10 @@
   "name": "travel-planning-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
+  "main": "server/index.js",
   "scripts": {
-    "dev": "npx nodemon index.js"
+    "dev": "npx nodemon server/index.js"
   },
   "keywords": [],
   "author": "",

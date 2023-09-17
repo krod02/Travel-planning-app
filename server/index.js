@@ -4,6 +4,7 @@ import { dirname } from 'path';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+import UserRoutes from './routes/User.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -23,8 +24,11 @@ app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+// Routes
+app.use('/user', UserRoutes); 
+
 // Port server is listening on
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server started on http://localhost:${PORT}`);
 });
