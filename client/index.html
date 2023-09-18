@@ -9,11 +9,16 @@
   <body>
     <div className="container">
       <div className="register-container">
-        <form className="register-form">
+        <form className="register-form" id="register-form">
           <h1>Client Register</h1>
           <div className="form-control">
-            <label for="register-name">Name</label>
-            <input type="text" id="register-name" placeholder="Enter name" />
+            <label for="register-firstName">First Name</label>
+            <input type="text" id="register-firstName" placeholder="Enter first name" />
+            <small>Error message</small>
+          </div>
+          <div className="form-control">
+            <label for="register-lastName">Last Name</label>
+            <input type="text" id="register-lastName" placeholder="Enter last name" />
             <small>Error message</small>
           </div>
           <div className="form-control">
@@ -32,6 +37,7 @@
           </div>
           <button type="submit">Register</button>
         </form>
+        <div id="message"></div>
       </div>
 
       <div className="login-container">
@@ -53,9 +59,12 @@
           </div>
           <button type="submit">Login</button>
         </form>
+        <div id="userData">
+          <span id="name"></span>
+      </div>      
       </div>
     </div>
-
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="script.js"></script>
   </body>
 </html>

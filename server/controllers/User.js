@@ -8,11 +8,9 @@ async function register(email, password, name) {
     throw new Error('User already exists');
   }
 
-  const [firstName, lastName] = name.split(' ');
-
   const [result] = await db.query(
     `INSERT INTO User (email, password, firstName, lastName) VALUES (?, ?, ?, ?)`,
-    [email, password, firstName, lastName]
+    [email, password, name[0], name[1]]
   );
   if (result.affectedRows) {
     return { id: result.insertId, email, name };
