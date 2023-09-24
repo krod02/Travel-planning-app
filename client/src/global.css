@@ -1,0 +1,9 @@
+.screen a {
+  text-decoration: none;
+}
+
+.container-center-horizontal {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}

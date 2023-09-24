@@ -1,31 +1,33 @@
+// Importing all necessary modules and dependencies needed to run the server
 import express from 'express';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import cors from 'cors';
-import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser'; // used to parse incoming request bodies in a middleware before handlers
+import cookieParser from 'cookie-parser'; // used to parse cookie header and populate req.cookies with an object keyed by the cookie names
 import UserRoutes from './routes/User.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __filename = fileURLToPath(import.meta.url); // converting module url to file path
+const __dirname = dirname(__filename); // getting directory name from file path
 
-// Create express app
+// Create express app server
 const app = express();
 
+// using cors to allow cross origin resource sharing from client side
 const corsOptions = {
   origin: 'http://localhost:3000',
   credentials: true,
 };
 
-// Middleware
+// Middleware being used by express app
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// Routes
-app.use('/user', UserRoutes); 
+// Routes for user login and registration
+app.use('/user', UserRoutes);
 
 // Port server is listening on
 const PORT = process.env.PORT;
