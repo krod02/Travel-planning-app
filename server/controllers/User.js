@@ -5,7 +5,7 @@ async function register(email, password, name) {
   // check if user exists
   const [user] = await db.query(`SELECT * FROM User WHERE email = ?`, [email]);
   if (user.length) {
-    throw new Error('User already exists');
+    throw new CustomError('User already exists', 409);
   }
 
   const [result] = await db.query(
@@ -15,7 +15,7 @@ async function register(email, password, name) {
   if (result.affectedRows) {
     return { id: result.insertId, email, name };
   }
-  throw new Error('User could not be created');
+  throw new CustomError('User could not be created', 500);
 }
 
 // Login a user
@@ -27,7 +27,7 @@ async function login(email, password) {
   if (user.length) {
     return user[0];
   }
-  throw new Error('User not found');
+  throw new CustomError('User does not exist', 404);
 }
 
 export default {

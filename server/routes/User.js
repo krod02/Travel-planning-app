@@ -13,7 +13,11 @@ router.post('/register', async (req, res, next) => {
     );
     res.json(result);
   } catch (err) {
-    next(err);
+    if (err instanceof CustomError) {
+      res.status(err.statusCode).json({ message: err.message });
+    } else {
+      next(err);
+    }
   }
 });
 
@@ -23,7 +27,11 @@ router.post('/login', async (req, res, next) => {
     const result = await controller.login(req.body.email, req.body.password);
     res.json(result);
   } catch (err) {
-    next(err);
+    if (err instanceof CustomError) {
+      res.status(err.statusCode).json({ message: err.message });
+    } else {
+      next(err);
+    }
   }
 });
 
