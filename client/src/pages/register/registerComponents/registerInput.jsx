@@ -24,13 +24,12 @@ export const RegisterInput = () => {
     baseURL: 'http://localhost:8080',
   });
 
-  const register = async (firstName, lastName, email, password) => {
+  const register = async (email, password, name) => {
     //function to make register request to server
     const res = await instance.post('/user/register', {
-      firstName,
-      lastName,
       email,
       password,
+      name
     });
     return res.data;
   };
@@ -39,15 +38,15 @@ export const RegisterInput = () => {
     // function to handle submit when register button is clicked
     e.preventDefault();
     try {
+      const name = [inputs.firstName, inputs.lastName];
       const result = await register(
-        inputs.firstName,
-        inputs.lastName,
         inputs.email,
-        inputs.password
+        inputs.password,
+        name
       );
       console.log(result);
       if (result && !result.error) {
-        navigate('/login');
+        navigate('/');
       }
     } catch (err) {
       console.log(err.response?.data?.message || err.message);
@@ -99,7 +98,7 @@ export const RegisterInput = () => {
         />
         {error && <small className='error-message'>{error}</small>}
       </div>
-      <button type='submit'>Login</button>
+      <button type='submit'>Register</button>
     </form>
   );
 };
