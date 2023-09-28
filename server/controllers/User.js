@@ -1,4 +1,5 @@
 import db from '../database.js';
+import CustomError from '../customError.js';
 
 // Register a new user
 async function register(email, password, name) {

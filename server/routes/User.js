@@ -1,5 +1,6 @@
 import express from 'express';
 import controller from '../controllers/User.js';
+import CustomError from '../customError.js';
 
 const router = express.Router();
 

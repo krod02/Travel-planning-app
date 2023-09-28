@@ -11,6 +11,11 @@ const router = createBrowserRouter([
     path: '/register',
     element: <Register />,
   },
+  {
+    path: '/home',
+    element: <div>This is the home page</div>,
+  },
+  
 ]);
 
 function App() {

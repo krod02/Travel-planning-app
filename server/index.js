@@ -16,7 +16,7 @@ const app = express();
 // using cors to allow cross origin resource sharing from client side
 const corsOptions = {
   origin: 'http://localhost:3000',
-  credentials: true,
+  
 };
 
 // Middleware being used by express app
