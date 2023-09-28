@@ -9,35 +9,34 @@ export const LoginInput = () => {
     password: '',
   });
   const handleChange = (e) => {
-    // updating state of inputs on change of input
+    // updating state of inputs wnen they change
     setInputs((inputs) => ({ ...inputs, [e.target.name]: e.target.value }));
   };
 
-  const [error, setError] = React.useState(null);
+  const [error, setError] = React.useState(null); //state to store error message
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); //using navigate hook to navigate to home page after login
 
   const instance = axios.create({
+    //creating axios instance to make requests to server
     baseURL: 'http://localhost:8080',
   });
   const login = async (email, password) => {
+    //function to make login request to server
     const res = await instance.post('/user/login', {
       email,
       password,
     });
-    if(res.data.error){
-      alert(res.data.error);
-      return;
-    }
     return res.data;
   };
 
   const handleSubmit = async (e) => {
+    // function to handle submit when login button is clicked
     e.preventDefault();
     try {
-      const res = await login(inputs.email, inputs.password);
-      console.log(res);
-      if (res){
+      const result = await login(inputs.email, inputs.password);
+      console.log(result);
+      if (result && !result.error) {
         navigate('/home');
       }
     } catch (err) {
