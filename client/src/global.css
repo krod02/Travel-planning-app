@@ -1,7 +1,7 @@
 .screen a {
   text-decoration: none;
+  display: contents;
 }
-
 .container-center-horizontal {
   display: flex;
   justify-content: center;

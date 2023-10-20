@@ -1,10 +1,9 @@
 import React from 'react';
-import './components.css';
+import '../login.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export const LoginInput = () => {
-  
   const [inputs, setInputs] = React.useState({
     email: '',
     password: '',
@@ -13,7 +12,7 @@ export const LoginInput = () => {
     // updating state of inputs wnen they change
     setInputs((inputs) => ({ ...inputs, [e.target.name]: e.target.value }));
   };
-  console.log(inputs)
+  console.log(inputs);
 
   const [error, setError] = React.useState(null); //state to store error message
 
@@ -48,8 +47,7 @@ export const LoginInput = () => {
   };
 
   return (
-    <form className='password-input' onSubmit={handleSubmit}>
-      <div className='login-title'>Login</div>
+    <form className='password-input-container' onSubmit={handleSubmit}>
       <div className='form-control'>
         <input
           className='email-input'

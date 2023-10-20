@@ -1,11 +1,12 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Login from './pages/login/login'
-import Register from './pages/register/register'
+import Login from './pages/login/login';
+import Register from './pages/register/register';
+import backgroundImage from './images/background-image.jpg';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Login />,
+    element: <Login background={backgroundImage} />,
   },
   {
     path: '/register',
@@ -15,7 +16,6 @@ const router = createBrowserRouter([
     path: '/home',
     element: <div>This is the home page</div>,
   },
-  
 ]);
 
 function App() {
