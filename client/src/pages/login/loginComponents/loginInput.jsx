@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export const LoginInput = () => {
+  
   const [inputs, setInputs] = React.useState({
     email: '',
     password: '',
@@ -12,6 +13,7 @@ export const LoginInput = () => {
     // updating state of inputs wnen they change
     setInputs((inputs) => ({ ...inputs, [e.target.name]: e.target.value }));
   };
+  console.log(inputs)
 
   const [error, setError] = React.useState(null); //state to store error message
 

@@ -25,7 +25,7 @@ router.post('/register', async (req, res, next) => {
 // Login a user
 router.post('/login', async (req, res, next) => {
   try {
-    const result = await controller.login(req.body.email, req.body.password);
+    const result = await controller.login(req.body.email1, req.body.password);
     res.json(result);
   } catch (err) {
     if (err instanceof CustomError) {

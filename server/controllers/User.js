@@ -20,15 +20,16 @@ async function register(email, password, name) {
 }
 
 // Login a user
-async function login(email, password) {
+async function login(email1, password) {
   const [user] = await db.query(
     `SELECT * FROM User WHERE email = ? AND password = ?`,
-    [email, password]
+    [email1, password]
   );
   if (user.length) {
     return user[0];
   }
   throw new CustomError('User does not exist', 404);
+  
 }
 
 export default {
