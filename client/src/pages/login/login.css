@@ -139,4 +139,42 @@
   color: #456672; /* Text color */
   outline: none; /* Remove default outline */
   padding: 3px 10px; /* Inner padding for text */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #e3b587;
+  cursor: pointer;
+  transform: scale(1.05); /* Zoom-in effect. Adjust the value as needed */
+  box-shadow: 0 0 15px rgba(227, 181, 135, 0.7); 
+  
+}
+
+.register-text{
+  color: #fff;
+  font-family: var(--cabin);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 1vh;
+  align-items: center;
+  margin-left: 3vw;
+  margin-top: 0vh;
+}
+
+.register-text a {
+  color: #e3b587; /* Default link color */
+  text-decoration: none; /* Removes the underline */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.register-text a:hover {
+  color: #e3b587; /* Color on hover */
+  text-shadow: 0 0 8px rgba(227, 181, 135, 0.7); /* Glow effect on hover */
+}
+
+/* If you want to style visited links differently */
+.register-text a:visited {
+  color: #e3b587; /* Adjust color as needed */
 }
