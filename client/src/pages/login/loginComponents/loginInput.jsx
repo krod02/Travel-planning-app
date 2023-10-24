@@ -48,28 +48,37 @@ export const LoginInput = () => {
 
   return (
     <form className='password-input-container' onSubmit={handleSubmit}>
-      <div className='form-control'>
-        <input
-          className='email-input'
-          name='email'
-          type='text'
-          placeholder='Email'
-          required
-          onChange={handleChange}
-        />
+      <div className='title-container'>
+        <h1 className='input-title'>Login</h1>
       </div>
-      <div className='form-control'>
-        <input
-          className='password-input'
-          name='password'
-          type='password'
-          placeholder='Password'
-          required
-          onChange={handleChange}
-        />
-        {error && <small className='error-message'>{error}</small>}
+      <div className='login-sub-container'>
+        <div className='form-control'>
+          <input
+            className='email-input'
+            name='email'
+            type='text'
+            placeholder='Email'
+            required
+            onChange={handleChange}
+          />
+        </div>
+        <div className='form-control'>
+          <input
+            className='password-input'
+            name='password'
+            type='password'
+            placeholder='Password'
+            required
+            onChange={handleChange}
+          />
+          {error && <small className='error-message'>{error}</small>}
+        </div>
+        <div className='submit-container'>
+          <button className='submit-button' type='submit'>
+            Login
+          </button>
+        </div>
       </div>
-      <button type='submit'>Login</button>
     </form>
   );
 };
