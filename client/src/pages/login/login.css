@@ -30,7 +30,7 @@
   margin-top: 10vh;
 }
 
-.title-container {
+.login-title-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,7 +67,7 @@
 }
 
 .login-sub-container {
-  margin-bottom: 16vh;
+  margin-bottom: 9vh;
 }
 
 .email-input,
@@ -146,11 +146,10 @@
   background-color: #e3b587;
   cursor: pointer;
   transform: scale(1.05); /* Zoom-in effect. Adjust the value as needed */
-  box-shadow: 0 0 15px rgba(227, 181, 135, 0.7); 
-  
+  box-shadow: 0 0 15px rgba(227, 181, 135, 0.7);
 }
 
-.register-text{
+.register-text {
   color: #fff;
   font-family: var(--cabin);
   font-size: 18px;
@@ -159,7 +158,7 @@
   line-height: normal;
   margin-top: 1vh;
   align-items: center;
-  margin-left: 3vw;
+  margin-left: 5vw;
   margin-top: 0vh;
 }
 

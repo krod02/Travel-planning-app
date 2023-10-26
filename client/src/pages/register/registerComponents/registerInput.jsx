@@ -1,6 +1,6 @@
 import React from 'react';
-import './components.css';
-import { useNavigate } from 'react-router-dom';
+import '../register.css';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
 export const RegisterInput = () => {
@@ -29,7 +29,7 @@ export const RegisterInput = () => {
     const res = await instance.post('/user/register', {
       email,
       password,
-      name
+      name,
     });
     return res.data;
   };
@@ -39,11 +39,7 @@ export const RegisterInput = () => {
     e.preventDefault();
     try {
       const name = [inputs.firstName, inputs.lastName];
-      const result = await register(
-        inputs.email,
-        inputs.password,
-        name
-      );
+      const result = await register(inputs.email, inputs.password, name);
       console.log(result);
       if (result && !result.error) {
         navigate('/');
@@ -55,50 +51,60 @@ export const RegisterInput = () => {
   };
 
   return (
-    <form className='register-input' onSubmit={handleSubmit}>
-      <div className='register-title'>Register</div>
-      <div className='form-control'>
-        <input
-          className='firstName-input'
-          name='firstName'
-          type='text'
-          placeholder='First Name'
-          required
-          onChange={handleChange}
-        />
+    <div className='register-wrapper'>
+      <form className='register-input' onSubmit={handleSubmit}>
+        <div className='register-sub-container'>
+          <div className='form-control'>
+            <input
+              className='firstName-input'
+              name='firstName'
+              type='text'
+              placeholder='First Name'
+              required
+              onChange={handleChange}
+            />
+          </div>
+          <div className='form-control'>
+            <input
+              className='lastName-input'
+              name='lastName'
+              type='text'
+              placeholder='Last Name'
+              required
+              onChange={handleChange}
+            />
+          </div>
+          <div className='form-control'>
+            <input
+              className='email-input-1'
+              name='email'
+              type='text'
+              placeholder='Email'
+              required
+              onChange={handleChange}
+            />
+          </div>
+          <div className='form-control'>
+            <input
+              className='password-input-1'
+              name='password'
+              type='password'
+              placeholder='Password'
+              required
+              onChange={handleChange}
+            />
+            {error && <small className='error-message'>{error}</small>}
+          </div>
+        </div>
+      </form>
+      <div className='register-button-container'>
+        <button className='register-button' type='submit'>
+          Register
+        </button>
+        <span className='login-text'>
+          Don't have an account? <Link to='/'>Login</Link>
+        </span>
       </div>
-      <div className='form-control'>
-        <input
-          className='lastName-input'
-          name='lastName'
-          type='text'
-          placeholder='Last Name'
-          required
-          onChange={handleChange}
-        />
-      </div>
-      <div className='form-control'>
-        <input
-          className='email-input-1'
-          name='email'
-          type='text'
-          placeholder='Email'
-          required
-          onChange={handleChange}
-        />
-      </div>
-      <div className='form-control'>
-        <input
-          className='password-input-1'
-          name='password'
-          type='password'
-          placeholder='Password'
-          required
-          onChange={handleChange}
-        />
-        {error && <small className='error-message'>{error}</small>}
-      </div>
-      <button type='submit'>Register</button>
-    </form>
+    </div>
   );
 };

@@ -1,0 +1,175 @@
+.register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.background-img {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.register-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.register-title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 7vh;
+}
+
+.register-title {
+  width: auto;
+  height: auto;
+  flex-shrink: 0;
+  color: #fff;
+  font-family: var(--cabin);
+  font-size: 88px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.register-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 32vw;
+  height: 48vh;
+  flex-shrink: 0;
+  border-radius: 30px;
+  background: rgba(69, 102, 114, 0.42);
+  margin-top: 10vh;
+  margin-left: 10vw;
+}
+
+.form-control {
+  margin-top: 4vh;
+  width: 20vw;
+  height: 4vh;
+}
+
+.email-input-1,
+.password-input-1,
+.firstName-input,
+.lastName-input {
+  width: 100%; /* Take full width of .form-control */
+  height: 100%; /* Take full height of .form-control */
+  flex-shrink: 0;
+  font-family: var(--cabin);
+  font-size: 22px;
+  line-height: normal;
+  font-style: normal;
+  font-weight: 400;
+  background-color: rgba(
+    49,
+    67,
+    87,
+    0.1
+  ); /* A slight background to distinguish it */
+  border: 2px solid #fff;
+  border-radius: 35px; /* Rounded corners */
+  color: #fff; /* Text color */
+  outline: none; /* Remove default outline */
+  padding: 3px 15px; /* Inner padding for text */
+}
+
+.email-input-1:focus,
+.password-input-1:focus,
+.firstName-input:focus,
+.lastName-input:focus {
+  border-color: #fff; /* White border on focus */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* A subtle glow on focus */
+}
+
+/* Styling placeholder text color */
+.email-input-1::placeholder,
+.password-input-1::placeholder,
+.firstName-input::placeholder,
+.lastName-input::placeholder {
+  color: #fff;
+  opacity: 0.7; /* Slight transparency on placeholder */
+}
+
+.register-sub-container {
+  margin-bottom: 5vh;
+  margin-right: 5vw;
+}
+
+.register-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 22vw;
+  height: 4vh;
+  margin-right: 15vw;
+}
+
+.register-button {
+  width: 100%; /* Take full width of .form-control */
+  height: 100%; /* Take full height of .form-control */
+  flex-shrink: 0;
+  font-family: var(--cabin);
+  font-size: 22px;
+  line-height: normal;
+  font-style: normal;
+  font-weight: 400;
+  background-color: #e3b587;
+  border: none;
+  border-radius: 35px; /* Rounded corners */
+  color: #456672; /* Text color */
+  outline: none; /* Remove default outline */
+  padding: 3px 10px; /* Inner padding for text */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.register-button:hover {
+  background-color: #e3b587;
+  cursor: pointer;
+  transform: scale(1.05); /* Zoom-in effect. Adjust the value as needed */
+  box-shadow: 0 0 15px rgba(227, 181, 135, 0.7);
+}
+
+.login-text {
+  color: #fff;
+  font-family: var(--cabin);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 1vh;
+  align-items: center;
+  margin-top: 0vh;
+}
+
+.login-text a {
+  color: #e3b587; /* Default link color */
+  text-decoration: none; /* Removes the underline */
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.login-text a:hover {
+  color: #e3b587; /* Color on hover */
+  text-shadow: 0 0 8px rgba(227, 181, 135, 0.7); /* Glow effect on hover */
+}
+
+/* If you want to style visited links differently */
+.login-text a:visited {
+  color: #e3b587; /* Adjust color as needed */
+}
