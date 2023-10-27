@@ -1,7 +1,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Login from './pages/login/login';
 import Register from './pages/register/register';
+import Dashboard from './pages/dashboard/dashboard';
 import backgroundImage from './images/background-image.jpg';
+import bannerImage from './images/banner-image.jpeg';
 
 const router = createBrowserRouter([
   {
@@ -13,8 +15,8 @@ const router = createBrowserRouter([
     element: <Register background={backgroundImage} />,
   },
   {
-    path: '/home',
-    element: <div>This is the home page</div>,
+    path: '/dashboard',
+    element: <Dashboard banner={bannerImage}/>,
   },
 ]);
 

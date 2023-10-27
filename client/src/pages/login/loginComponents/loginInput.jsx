@@ -38,7 +38,7 @@ export const LoginInput = () => {
       const result = await login(inputs.email, inputs.password);
       console.log(result);
       if (result && !result.error) {
-        navigate('/home');
+        navigate('/dahsboard');
       }
     } catch (err) {
       console.log(err.response?.data?.message || err.message);
