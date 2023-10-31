@@ -3,7 +3,7 @@ import Login from './pages/login/login';
 import Register from './pages/register/register';
 import Dashboard from './pages/dashboard/dashboard';
 import backgroundImage from './images/background-image.jpg';
-import bannerImage from './images/banner-image.jpeg';
+import bannerImage from './images/banner-image.jpg';
 
 const router = createBrowserRouter([
   {
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <Dashboard banner={bannerImage}/>,
+    element: <Dashboard banner={bannerImage} />,
   },
 ]);
 
