@@ -1,10 +1,11 @@
 import React from 'react';
 import './dashboard.css';
-import { AntDesignOutlined } from '@ant-design/icons';
-import { Avatar } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+import { Avatar, Space } from 'antd';
+import { Trips } from './dashboardComponents/trips.jsx';
 
 const Dashboard = (props) => {
-  const { banner } = props;
+  const { banner, tripImage } = props;
 
   return (
     <div className='dashboard screen'>
@@ -13,20 +14,17 @@ const Dashboard = (props) => {
           className='banner-img'
           style={{ backgroundImage: `url(${banner})` }}
         ></div>
-        <div className='banner-title'>Welcome Kevin</div>
-        <div className='banner-subtitle'>Plan to travel the world!</div>
-        <Avatar
-          size={{
-            xs: 24,
-            sm: 32,
-            md: 40,
-            lg: 64,
-            xl: 80,
-            xxl: 100,
-          }}
-          icon={<AntDesignOutlined />}
-        />
+        <div className='banner-overlay'>
+          <div className='banner-title'>Welcome Kevin</div>
+          <div className='banner-subtitle'>Plan to travel the world!</div>
+        </div>
+        <Space className='user-avatar' direction='vertical' size={16}>
+          <Space wrap size={16}>
+            <Avatar className='avatar' size='large' icon={<UserOutlined />} />
+          </Space>
+        </Space>
       </div>
+      <Trips tripImage={tripImage} />
     </div>
   );
 };

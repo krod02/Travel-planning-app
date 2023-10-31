@@ -4,6 +4,7 @@ import Register from './pages/register/register';
 import Dashboard from './pages/dashboard/dashboard';
 import backgroundImage from './images/background-image.jpg';
 import bannerImage from './images/banner-image.jpg';
+import tripImage from './images/new-york-trip-image.jpeg';
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <Dashboard banner={bannerImage} />,
+    element: <Dashboard banner={bannerImage} tripImage={tripImage} />,
   },
 ]);
 
