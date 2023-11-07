@@ -128,3 +128,59 @@
   z-index: -1;
   border-radius: 30px;
 }
+
+.trip-info {
+  margin-top: 13vh;
+  margin-left: 1vw;
+}
+
+.trip-name,
+.trip-location,
+.trip-date {
+  font-family: var(--cabin);
+  line-height: normal;
+  font-style: normal;
+  font-weight: 400;
+  color: #fff;
+}
+
+.trip-name {
+  font-size: 20px;
+}
+
+.trip-location {
+  font-size: 12px;
+}
+
+.trip-date {
+  font-size: 12px;
+}
+
+.menu-dots {
+  position: absolute;
+  top: 20px; /* Adjust as needed */
+  right: 30px; /* Adjust as needed */
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 30px;
+  cursor: pointer;
+  border-radius: 50%; /* Circular shape */
+  padding: 10px; /* Space around the dots */
+  transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+/* Hide the default outline for focused elements */
+.menu-dots:focus {
+  outline: none;
+}
+
+/* Additional styling for the dots on hover */
+.menu-dots:hover {
+  background-color: rgb(
+    128,
+    128,
+    128,
+    0.5
+  ) !important; /* Grey faded background */
+}

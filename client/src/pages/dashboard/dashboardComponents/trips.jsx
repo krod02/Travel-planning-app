@@ -19,6 +19,7 @@ const Trips = (props) => {
             <div className='trip-name'>Trip to Paris</div>
             <div className='trip-location'>New York, New York</div>
             <div className='trip-date'>23 May - 5 June</div>
+            <button className='menu-dots'>⋮</button>
           </div>
         </div>
       </div>
