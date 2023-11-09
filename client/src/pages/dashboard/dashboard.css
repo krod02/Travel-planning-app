@@ -1,7 +1,7 @@
 .dashboard {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 
@@ -19,7 +19,7 @@
   background-repeat: no-repeat;
   background-position: center;
   height: 15vh;
-  width: 100vw;
+  width: 100%;
   position: absolute;
   top: 0;
   left: 0;
@@ -65,7 +65,7 @@
 .current-trips {
   display: flex;
   flex-direction: column;
-  align-items: ;
+  align-items: center;
   justify-content: center;
   margin-top: 5vh;
 }
@@ -75,18 +75,19 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  width: 100vw;
+  width: 100%;
+  margin-left: 8vw;
+  margin-top: 5vh;
 }
 
 .trips-title {
   font-family: var(--cabin);
-  font-size: 24px;
+  font-size: 36px;
   line-height: normal;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 520;
   color: #c98c70;
-  margin-left: 5vw;
-  margin-top: 5vh;
+
   position: relative;
   display: inline-block;
 }
@@ -107,9 +108,9 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  width: 100vw;
-  margin-top: 5vh;
-  margin-left: 5vw;
+  width: 100%;
+  margin-top: 3vh;
+  margin-left: 8vw;
 }
 
 .trip-img {
@@ -183,4 +184,229 @@
     128,
     0.5
   ) !important; /* Grey faded background */
+}
+
+.plan-trip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.plan-trip-title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  margin-left: 9vw;
+  margin-top: 5vh;
+}
+.plan-trip-title {
+  font-family: var(--cabin);
+  font-size: 36px;
+  line-height: normal;
+  font-style: normal;
+  font-weight: 530;
+  color: #c98c70;
+  position: relative;
+  display: inline-block;
+}
+
+.plan-trip-title::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #c98c70;
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+}
+
+.plan-trip-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.input-trip-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-top: 3vh;
+  margin-left: 4vw;
+  width: calc(50% - 4vw); /* Adjusted width accounting for margin */
+}
+
+.input-trip {
+  margin-bottom: 3vh;
+  width: 20vw;
+  height: 3.5vh;
+}
+
+.trip-name-input,
+.trip-location-input,
+.start-date-input,
+.end-date-input {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  font-family: var(--cabin);
+  font-size: 22px;
+  line-height: normal;
+  font-style: normal;
+  font-weight: 400;
+  background-color: #e3b587;
+  border: 2px solid #e3b587;
+  border-radius: 15px;
+  color: #456672;
+  outline: none;
+  padding: 3px 15px;
+}
+
+.trip-name-input::placeholder,
+.trip-location-input::placeholder,
+.start-date-input::placeholder,
+.end-date-input::placeholder {
+  color: #456672a6;
+}
+
+.input-trip-button {
+  width: 21.8vw;
+  height: 4.5vh;
+}
+
+.plan-trip-button {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  font-family: var(--cabin);
+  font-size: 22px;
+  line-height: normal;
+  font-style: normal;
+  font-weight: 400;
+  background-color: #456672;
+  border: 2px solid #456672;
+  border-radius: 15px;
+  color: #e3b587;
+  outline: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plan-trip-button:hover {
+  background-color: #456672;
+  cursor: pointer;
+  transform: scale(1.05); /* Zoom-in effect. Adjust the value as needed */
+  box-shadow: 0 0 15px #456672;
+}
+
+.invite-partner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 5vw;
+  width: calc(50% - 5vw); /* Adjusted width accounting for margin */
+}
+
+.invite-partner-title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.invite-partner-title {
+  font-family: var(--cabin);
+  font-size: 40px;
+  line-height: normal;
+  font-style: normal;
+  font-weight: 520;
+  color: #c98c70;
+  position: relative;
+  display: inline-block;
+}
+
+.invite-partner-subtitle {
+  font-family: var(--cabin);
+  font-size: 22px;
+  line-height: normal;
+  font-style: normal;
+  font-weight: 400;
+  color: #314357;
+  margin-top: 0vh;
+  margin-bottom: 5vh;
+}
+
+.input-partner {
+  margin-bottom: 3vh;
+  width: 18vw;
+  height: 3.5vh;
+}
+
+.partner-email-input {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  font-family: var(--cabin);
+  font-size: 22px;
+  line-height: normal;
+  font-style: normal;
+  font-weight: 400;
+  background-color: #e3b587;
+  border: 2px solid #e3b587;
+  border-radius: 15px;
+  color: #456672;
+  outline: none;
+  padding: 3px 15px;
+}
+
+.input-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 20vw;
+  height: 4.5vh;
+  margin-top: 1.5 vh;
+  margin-left: 2vw;
+}
+
+.invite-button {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  font-family: var(--cabin);
+  font-size: 22px;
+  line-height: normal;
+  font-style: normal;
+  font-weight: 400;
+  background-color: #456672;
+  border: 2px solid #456672;
+  border-radius: 15px;
+  color: #e3b587;
+  outline: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.invite-button:hover {
+  background-color: #456672;
+  cursor: pointer;
+  transform: scale(1.05); /* Zoom-in effect. Adjust the value as needed */
+  box-shadow: 0 0 15px #456672;
+}
+
+.partner-email-input:focus,
+.trip-name-input:focus,
+.trip-location-input:focus,
+.start-date-input:focus,
+.end-date-input:focus {
+  border-color: #e3b587; /* White border on focus */
+  box-shadow: 0 0 10px #e3b587;
 }

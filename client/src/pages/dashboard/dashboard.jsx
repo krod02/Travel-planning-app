@@ -3,6 +3,7 @@ import './dashboard.css';
 import { UserOutlined } from '@ant-design/icons';
 import { Avatar, Space } from 'antd';
 import { Trips } from './dashboardComponents/trips.jsx';
+import { PlanTrip } from './dashboardComponents/planTrip.jsx';
 
 const Dashboard = (props) => {
   const { banner, tripImage } = props;
@@ -25,6 +26,7 @@ const Dashboard = (props) => {
         </Space>
       </div>
       <Trips tripImage={tripImage} />
+      <PlanTrip />
     </div>
   );
 };
