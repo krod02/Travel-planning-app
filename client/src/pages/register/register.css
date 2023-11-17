@@ -22,7 +22,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
 }
 
@@ -48,15 +48,14 @@
 .register-input {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   width: 32vw;
   height: 48vh;
   flex-shrink: 0;
   border-radius: 30px;
   background: rgba(69, 102, 114, 0.42);
   margin-top: 10vh;
-  margin-left: 10vw;
 }
 
 .form-control {
@@ -109,7 +108,7 @@
 
 .register-sub-container {
   margin-bottom: 5vh;
-  margin-right: 5vw;
+  margin-left: 5vw;
 }
 
 .register-button-container {
@@ -118,8 +117,7 @@
   align-items: center;
   width: 22vw;
   height: 4vh;
-  margin-right: 17vw;
-  margin-top: 10vh;
+  margin-left: 5vw;
 }
 
 .register-button {

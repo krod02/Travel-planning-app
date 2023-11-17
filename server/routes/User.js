@@ -10,7 +10,8 @@ router.post('/register', async (req, res, next) => {
     const result = await controller.register(
       req.body.email,
       req.body.password,
-      req.body.name
+      req.body.firstName,
+      req.body.lastName
     );
     res.json(result);
   } catch (err) {
@@ -25,7 +26,12 @@ router.post('/register', async (req, res, next) => {
 // Login a user
 router.post('/login', async (req, res, next) => {
   try {
-    const result = await controller.login(req.body.email1, req.body.password);
+    const result = await controller.login(req.body.email, req.body.password);
+    res.cookie('token', result.token, {
+      httpOnly: true,
+      sameSite: 'none',
+      maxAge: 3600000,
+    });
     res.json(result);
   } catch (err) {
     if (err instanceof CustomError) {

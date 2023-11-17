@@ -24,12 +24,13 @@ export const RegisterInput = () => {
     baseURL: 'http://localhost:8080',
   });
 
-  const register = async (email, password, name) => {
+  const register = async (email, password, firstName, lastName) => {
     //function to make register request to server
     const res = await instance.post('/user/register', {
       email,
       password,
-      name,
+      firstName,
+      lastName,
     });
     return res.data;
   };
@@ -38,8 +39,12 @@ export const RegisterInput = () => {
     // function to handle submit when register button is clicked
     e.preventDefault();
     try {
-      const name = [inputs.firstName, inputs.lastName];
-      const result = await register(inputs.email, inputs.password, name);
+      const result = await register(
+        inputs.email,
+        inputs.password,
+        inputs.firstName,
+        inputs.lastName
+      );
       console.log(result);
       if (result && !result.error) {
         navigate('/');
@@ -96,15 +101,15 @@ export const RegisterInput = () => {
             {error && <small className='error-message'>{error}</small>}
           </div>
         </div>
+        <div className='register-button-container'>
+          <button className='register-button' type='submit'>
+            Register
+          </button>
+          <span className='login-text'>
+            Don't have an account? <Link to='/'>Login</Link>
+          </span>
+        </div>
       </form>
-      <div className='register-button-container'>
-        <button className='register-button' type='submit'>
-          Register
-        </button>
-        <span className='login-text'>
-          Don't have an account? <Link to='/'>Login</Link>
-        </span>
-      </div>
     </div>
   );
 };

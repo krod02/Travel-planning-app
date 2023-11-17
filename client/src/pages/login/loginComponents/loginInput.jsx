@@ -38,7 +38,7 @@ export const LoginInput = () => {
       const result = await login(inputs.email, inputs.password);
       console.log(result);
       if (result && !result.error) {
-        navigate('/dahsboard');
+        navigate('/dashboard');
       }
     } catch (err) {
       console.log(err.response?.data?.message || err.message);
@@ -78,7 +78,9 @@ export const LoginInput = () => {
             Login
           </button>
         </div>
-        <span className='register-text'>Don't have an account? <Link to="/register">Register</Link></span>
+        <span className='register-text'>
+          Don't have an account? <Link to='/register'>Register</Link>
+        </span>
       </div>
     </form>
   );
