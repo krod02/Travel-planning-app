@@ -5,6 +5,7 @@ import axios from 'axios';
 
 export const RegisterInput = () => {
   const [inputs, setInputs] = React.useState({
+    //state to store inputs
     firstName: '',
     lastName: '',
     email: '',
@@ -27,6 +28,7 @@ export const RegisterInput = () => {
   const register = async (email, password, firstName, lastName) => {
     //function to make register request to server
     const res = await instance.post('/user/register', {
+      //making post request to server
       email,
       password,
       firstName,
@@ -40,18 +42,18 @@ export const RegisterInput = () => {
     e.preventDefault();
     try {
       const result = await register(
+        //calling register function
         inputs.email,
         inputs.password,
         inputs.firstName,
         inputs.lastName
       );
-      console.log(result);
       if (result && !result.error) {
         navigate('/');
       }
     } catch (err) {
       console.log(err.response?.data?.message || err.message);
-      setError(err.response?.data?.message || err.message);
+      setError(err.response?.data?.message || err.message); //setting error message
     }
   };
 

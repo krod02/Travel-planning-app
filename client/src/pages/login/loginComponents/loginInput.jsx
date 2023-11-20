@@ -1,7 +1,8 @@
 import React from 'react';
 import '../login.css';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
+import { AuthContext } from '../../../context/authContext';
+import { useContext } from 'react';
 
 export const LoginInput = () => {
   const [inputs, setInputs] = React.useState({
@@ -12,37 +13,22 @@ export const LoginInput = () => {
     // updating state of inputs wnen they change
     setInputs((inputs) => ({ ...inputs, [e.target.name]: e.target.value }));
   };
-  console.log(inputs);
 
   const [error, setError] = React.useState(null); //state to store error message
 
   const navigate = useNavigate(); //using navigate hook to navigate to home page after login
 
-  const instance = axios.create({
-    //creating axios instance to make requests to server
-    baseURL: 'http://localhost:8080',
-  });
-  const login = async (email, password) => {
-    //function to make login request to server
-    const res = await instance.post('/user/login', {
-      email,
-      password,
-    });
-    return res.data;
-  };
+  const { login } = useContext(AuthContext); //using login function from authContext
 
   const handleSubmit = async (e) => {
     // function to handle submit when login button is clicked
     e.preventDefault();
     try {
-      const result = await login(inputs.email, inputs.password);
-      console.log(result);
-      if (result && !result.error) {
-        navigate('/dashboard');
-      }
+      await login(inputs.email, inputs.password); //calling login function from authContext
+      navigate('/dashboard');
     } catch (err) {
       console.log(err.response?.data?.message || err.message);
-      setError(err.response?.data?.message || err.message);
+      setError(err.response?.data?.message || err.message); //setting error message
     }
   };
 

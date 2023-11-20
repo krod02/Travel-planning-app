@@ -11,8 +11,7 @@ export const AuthContextProvider = ({ children }) => {
 
   // This is the axios instance that is used to make requests to the server
   const instance = axios.create({
-    baseURL: 'http://localhost:5000',
-    withCredentials: true,
+    baseURL: 'http://localhost:8080',
   });
 
   // This function is used to login a user and makes a request to the server

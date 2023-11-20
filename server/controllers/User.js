@@ -26,23 +26,21 @@ async function register(email, password, firstName, lastName) {
 }
 
 // Login a user
-async function login(email1, password) {
-  const [user] = await db.query(
-    `SELECT * FROM User WHERE email = ? AND password = ?`,
-    [email1, password]
-  );
-  if (user.length === 0) {
+async function login(email, password) {
+  const [rows] = await db.query(`SELECT * FROM User WHERE email = ?`, [email]);
+  if (rows.length === 0) {
     throw new CustomError('User does not exist', 404);
   }
+  const user = rows[0];
 
-  if (!bcrypt.compareSync(password, user[0].password)) {
+  if (!bcrypt.compareSync(password, user.password)) {
     throw new CustomError('Password is incorrect', 400);
   }
-  const token = jwt.sign({ email: user[0].email }, process.env.JWT_SECRET, {
+  const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
     expiresIn: '1h',
   });
 
-  return { user: user[0], token };
+  return { user: user, token };
 }
 
 export default {

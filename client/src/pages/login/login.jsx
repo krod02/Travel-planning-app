@@ -3,7 +3,7 @@ import './login.css';
 import { LoginInput } from './loginComponents/loginInput.jsx';
 
 const Login = (props) => {
-  const { background } = props;
+  const { background } = props; // background image
 
   return (
     <div className='login screen'>

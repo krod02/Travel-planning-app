@@ -3,7 +3,7 @@ import './register.css';
 import { RegisterInput } from './registerComponents/registerInput.jsx';
 
 const Register = (props) => {
-  const { background } = props;
+  const { background } = props; // background image
 
   return (
     <div className='register screen'>
