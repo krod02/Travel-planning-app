@@ -59,7 +59,6 @@
   font-weight: 400;
   color: #fff;
   margin-top: 0vh;
-  margin-left: 1vw;
 }
 
 .current-trips {
@@ -254,7 +253,7 @@
   height: 100%;
   flex-shrink: 0;
   font-family: var(--cabin);
-  font-size: 22px;
+  font-size: 18px;
   line-height: normal;
   font-style: normal;
   font-weight: 400;
@@ -283,12 +282,12 @@
   height: 100%;
   flex-shrink: 0;
   font-family: var(--cabin);
-  font-size: 22px;
+  font-size: 20px;
   line-height: normal;
   font-style: normal;
   font-weight: 400;
-  background-color: #456672;
-  border: 2px solid #456672;
+  background-color: #314357;
+  border: 2px solid #314357;
   border-radius: 15px;
   color: #e3b587;
   outline: none;
@@ -296,7 +295,7 @@
 }
 
 .plan-trip-button:hover {
-  background-color: #456672;
+  background-color: #314357;
   cursor: pointer;
   transform: scale(1.05);
   box-shadow: 0 0 15px #456672;
@@ -352,7 +351,7 @@
   height: 100%;
   flex-shrink: 0;
   font-family: var(--cabin);
-  font-size: 22px;
+  font-size: 18px;
   line-height: normal;
   font-style: normal;
   font-weight: 400;
@@ -380,12 +379,12 @@
   height: 100%;
   flex-shrink: 0;
   font-family: var(--cabin);
-  font-size: 22px;
+  font-size: 20px;
   line-height: normal;
   font-style: normal;
   font-weight: 400;
-  background-color: #456672;
-  border: 2px solid #456672;
+  background-color: #314357;
+  border: 2px solid #314357;
   border-radius: 15px;
   color: #e3b587;
   outline: none;
@@ -393,10 +392,10 @@
 }
 
 .invite-button:hover {
-  background-color: #456672;
+  background-color: #314357;
   cursor: pointer;
   transform: scale(1.05);
-  box-shadow: 0 0 15px #456672;
+  box-shadow: 0 0 15px #314357;
 }
 
 .partner-email-input:focus,

@@ -23,7 +23,7 @@ const Dashboard = (props) => {
       updateUserData(email);
       isInitialMount.current = true;
     }
-  }, [email]);
+  }, [email, updateUserData]);
 
   if (!userData || Object.keys(userData).length === 0) {
     return <div>Loading...</div>;
