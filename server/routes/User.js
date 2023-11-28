@@ -27,18 +27,27 @@ router.post('/register', async (req, res, next) => {
 router.post('/login', async (req, res, next) => {
   try {
     const result = await controller.login(req.body.email, req.body.password);
-    res.cookie('token', result.token, {
+    res.cookie('access_token', result.token, {
       httpOnly: true,
-      sameSite: 'none',
+      sameSite: 'lax',
       maxAge: 3600000,
     });
-    res.json(result);
+    res.json(result.data);
   } catch (err) {
     if (err instanceof CustomError) {
       res.status(err.statusCode).json({ message: err.message });
     } else {
       next(err);
     }
+  }
+});
+
+router.get('/data', async (req, res, next) => {
+  try {
+    const result = await controller.getAllUserData(req.query.email);
+    res.json(result);
+  } catch (err) {
+    next(err);
   }
 });
 

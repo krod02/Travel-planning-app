@@ -1,5 +1,6 @@
 import React from 'react';
 import '../dashboard.css';
+import axios from 'axios';
 
 export const PlanTrip = (props) => {
   const [inputs, setInputs] = React.useState({
@@ -11,6 +12,26 @@ export const PlanTrip = (props) => {
   const handleChange = (e) => {
     // updating state of inputs wnen they change
     setInputs((inputs) => ({ ...inputs, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const imageUrl = await axios.get('/dashboard/fetch-images', {
+        params: {
+          location: inputs.tripLocation,
+        },
+      });
+
+      const tripData = {
+        ...inputs,
+        imageUrl,
+      };
+
+      const saveResult = await axios.post('/dashboard/save-trip', tripData);
+    } catch (err) {
+      console.error('error fetching image:', err);
+    }
   };
 
   return (
@@ -27,16 +48,6 @@ export const PlanTrip = (props) => {
               name='tripName'
               type='text'
               placeholder='Name'
-              required
-              onChange={handleChange}
-            />
-          </div>
-          <div className='input-trip'>
-            <input
-              className='trip-location-input'
-              name='tripLocation'
-              type='text'
-              placeholder='Location'
               required
               onChange={handleChange}
             />

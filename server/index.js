@@ -6,6 +6,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser'; // used to parse incoming request bodies in a middleware before handlers
 import cookieParser from 'cookie-parser'; // used to parse cookie header and populate req.cookies with an object keyed by the cookie names
 import UserRoutes from './routes/User.js';
+import DashboardRoutes from './routes/Dashboard.js';
 
 const __filename = fileURLToPath(import.meta.url); // converting module url to file path
 const __dirname = dirname(__filename); // getting directory name from file path
@@ -16,7 +17,7 @@ const app = express();
 // using cors to allow cross origin resource sharing from client side
 const corsOptions = {
   origin: 'http://localhost:3000',
-  
+  credentials: true,
 };
 
 // Middleware being used by express app
@@ -28,6 +29,7 @@ app.use(cookieParser());
 
 // Routes for user login and registration
 app.use('/user', UserRoutes);
+app.use('/dashboard', DashboardRoutes);
 
 // Port server is listening on
 const PORT = process.env.PORT;

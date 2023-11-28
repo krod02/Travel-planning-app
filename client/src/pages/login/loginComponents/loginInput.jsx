@@ -25,7 +25,7 @@ export const LoginInput = () => {
     e.preventDefault();
     try {
       await login(inputs.email, inputs.password); //calling login function from authContext
-      navigate('/dashboard');
+      navigate('/dashboard', { state: { email: inputs.email } });
     } catch (err) {
       console.log(err.response?.data?.message || err.message);
       setError(err.response?.data?.message || err.message); //setting error message
