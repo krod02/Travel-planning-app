@@ -120,8 +120,25 @@ async function login(email, password) {
   return { data: userData, token };
 }
 
+const logout = (req, res) => {
+  try {
+    res
+      .clearCookie('access_token', {
+        //clears the cookie
+        sameSite: 'none',
+        secure: true,
+      })
+      .status(200)
+      .json({ message: 'Logout successful' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
 export default {
   register,
   login,
   getAllUserData,
+  logout,
 };

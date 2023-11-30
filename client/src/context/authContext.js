@@ -28,9 +28,19 @@ export const AuthContextProvider = ({ children }) => {
     setUser(res.data);
   };
 
-  // This function is used to logout a user and makes a request to the server
+  // This function is used to logout a user and makes a request to the server\
   const logout = async () => {
-    setUser(null);
+    try {
+      const res = await instance.post('/user/logout');
+      if (res.data.error) {
+        console.error('Logout error:', res.data.error);
+        return;
+      }
+      localStorage.removeItem('user'); // Clear user data from localStorage
+      setUser(null); // Update context state
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
   };
 
   // This useEffect hook is used to save the user state to local storage

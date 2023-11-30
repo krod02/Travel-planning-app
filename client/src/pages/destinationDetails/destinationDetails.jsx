@@ -3,9 +3,11 @@ import '../dashboard/dashboard.css';
 import './destinationDetails.css';
 import { UserOutlined } from '@ant-design/icons';
 import { Avatar, Space } from 'antd';
+import { POI } from './destinationPlansComponents/POI.jsx';
+import { RecommendedPOI } from './destinationPlansComponents/recommendedPOI.jsx';
 
 const DestinationDetails = (props) => {
-  const { banner } = props;
+  const { banner, tripImage } = props;
   return (
     <div className='destinationDetails screen'>
       <div className='banner-container'>
@@ -22,6 +24,10 @@ const DestinationDetails = (props) => {
             <Avatar className='avatar' size='large' icon={<UserOutlined />} />
           </Space>
         </Space>
+      </div>
+      <div className='destinationDetails-components-container'>
+        <POI tripImage={tripImage} />
+        <RecommendedPOI tripImage={tripImage} />
       </div>
     </div>
   );

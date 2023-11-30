@@ -24,11 +24,9 @@ router.post('/save-trip', async (req, res, next) => {
   try {
     const result = await controller.saveTrip(
       req.body.tripName,
-      req.body.tripLocation,
       req.body.tripStartDate,
       req.body.tripEndDate,
-      req.body.userId,
-      req.body.imageUrl
+      req.body.userId
     );
     res.json(result);
   } catch (err) {

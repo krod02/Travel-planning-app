@@ -1,6 +1,7 @@
 import React from 'react';
 import '../dashboard.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export const PlanTrip = (props) => {
   const [inputs, setInputs] = React.useState({
@@ -9,6 +10,8 @@ export const PlanTrip = (props) => {
     tripStartDate: '',
     tripEndDate: '',
   });
+  const Navigate = useNavigate();
+
   const handleChange = (e) => {
     // updating state of inputs wnen they change
     setInputs((inputs) => ({ ...inputs, [e.target.name]: e.target.value }));
@@ -17,20 +20,15 @@ export const PlanTrip = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const imageUrl = await axios.get('/dashboard/fetch-images', {
-        params: {
-          location: inputs.tripLocation,
-        },
-      });
-
       const tripData = {
         ...inputs,
-        imageUrl,
       };
-
       const saveResult = await axios.post('/dashboard/save-trip', tripData);
+      if (saveResult.status === 200) {
+        Navigate('/planDetails');
+      }
     } catch (err) {
-      console.error('error fetching image:', err);
+      console.error('Error saving trip:', err);
     }
   };
 

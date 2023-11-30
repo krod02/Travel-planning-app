@@ -2,8 +2,9 @@ import React from 'react';
 import '../dashboard.css';
 
 const Trips = (props) => {
-  const { tripImage } = props;
+  const { tripImage, userData } = props;
 
+  const plans = userData.plans;
   return (
     <div className='current-trips'>
       <div className='trip-title-container'>
@@ -11,17 +12,33 @@ const Trips = (props) => {
         <div className='trip-underline'></div>
       </div>
       <div className='trips-container'>
-        <div
-          className='trip-img'
-          style={{ backgroundImage: `url(${tripImage})` }}
-        >
-          <div className='trip-info'>
-            <div className='trip-name'>Trip to Paris</div>
-            <div className='trip-location'>New York, New York</div>
-            <div className='trip-date'>23 May - 5 June</div>
-            <button className='menu-dots'>⋮</button>
-          </div>
-        </div>
+        {Object.values(plans).map((plan, index) => {
+          // Get the first destination's image
+          const firstDestination = Object.values(plan.destinations)[0];
+          const destinationImage = firstDestination
+            ? firstDestination.destinationImage
+            : null;
+
+          return (
+            plan.planName && (
+              <div
+                key={index}
+                className='trip-img'
+                style={{
+                  backgroundImage: `url(${
+                    destinationImage || 'defaultImageURL'
+                  })`,
+                }}
+              >
+                <div className='trip-info'>
+                  <div className='trip-name'>{plan.planName}</div>
+                  <div className='trip-date'>{`${plan.startDate} - ${plan.endDate}`}</div>
+                  <button className='menu-dots'>⋮</button>
+                </div>
+              </div>
+            )
+          );
+        })}
       </div>
     </div>
   );

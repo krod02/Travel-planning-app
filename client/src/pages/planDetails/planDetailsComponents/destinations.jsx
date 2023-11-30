@@ -1,6 +1,5 @@
 import React from 'react';
 import '../planDetails.css';
-import { useNavigate, Link } from 'react-router-dom';
 
 const Destinations = (props) => {
   const { tripImage } = props;
@@ -8,7 +7,7 @@ const Destinations = (props) => {
     <div className='destinations-wrapper'>
       <div className='destinations-title-container'>
         <div className='trip-title'>Trip to Spain</div>
-        <div className='trip-date'>23 May - 23 June</div>
+        <div className='trip-date-2'>23 May - 23 June</div>
       </div>
       <div className='destinations-container'>
         <div className='destination'>

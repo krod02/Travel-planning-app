@@ -42,6 +42,9 @@ router.post('/login', async (req, res, next) => {
   }
 });
 
+// Route used to logout a driver
+router.post('/logout', controller.logout);
+
 router.get('/data', async (req, res, next) => {
   try {
     const result = await controller.getAllUserData(req.query.email);

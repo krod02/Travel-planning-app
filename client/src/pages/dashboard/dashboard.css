@@ -406,3 +406,21 @@
   border-color: #e3b587;
   box-shadow: 0 0 10px #e3b587;
 }
+
+.logout-menu {
+  position: absolute;
+  right: 100px; /* Adjust as necessary */
+  top: 100px; /* Adjust to position below the avatar */
+  background-color: #e3b587;
+  border: 1px solid #e3b587;
+  border-radius: 5px;
+  padding: 5px 10px 5px 10px;
+}
+
+.logout-menu button {
+  background: none;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-family: var(--cabin);
+}
