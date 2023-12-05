@@ -1,7 +1,10 @@
 import React from 'react';
 import '../planDetails.css';
+import axios from 'axios';
 
 const AddDestinations = (props) => {
+  const { onAddDestination, planID } = props;
+
   const [inputs, setInputs] = React.useState({
     destinationLocation: '',
     destinationStartDate: '',
@@ -12,6 +15,46 @@ const AddDestinations = (props) => {
   const handleChange = (e) => {
     // updating state of inputs wnen they change
     setInputs((inputs) => ({ ...inputs, [e.target.name]: e.target.value }));
+  };
+
+  const instance = axios.create({
+    //creating axios instance to make requests to server
+    baseURL: 'http://localhost:8080',
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      // Fetch the image URL from Unsplash
+      const imageUrlResponse = await instance.get('/destination/fetch-images', {
+        params: { location: inputs.destinationLocation },
+      });
+      const imageUrl = imageUrlResponse.data;
+      console.log('imageUrl:', imageUrlResponse);
+
+      // Prepare the data for saving the destination
+      // Prepare the data for the new destination
+      const newDestinationData = {
+        planID: planID,
+        destinationName: inputs.destinationLocation,
+        dateTo: inputs.destinationStartDate,
+        dateFrom: inputs.destinationEndDate,
+        destinationImage: imageUrl, // Add the fetched image URL
+        orderInPlan: inputs.destinationOrder,
+      };
+
+      // Save the destination
+      const saveResult = await instance.post(
+        '/destination/save-destination',
+        newDestinationData
+      );
+
+      if (saveResult.status === 200) {
+        onAddDestination(saveResult.data);
+      }
+    } catch (err) {
+      console.error('Error saving destination:', err);
+    }
   };
 
   return (
@@ -45,7 +88,7 @@ const AddDestinations = (props) => {
             className='dateTo-input'
             name='destinationEndDate'
             type='text'
-            placeholder='Date To'
+            placeholder='Date To (DD/MM/YYYY)'
             required
             onChange={handleChange}
           />
@@ -61,7 +104,7 @@ const AddDestinations = (props) => {
           />
         </div>
         <div className='add-destination-button-container'>
-          <button className='add-destination-button' type='submit'>
+          <button className='add-destination-button' onClick={handleSubmit}>
             Add Destination
           </button>
         </div>

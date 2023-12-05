@@ -4,11 +4,12 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export const PlanTrip = (props) => {
+  const { userData, email } = props;
+
   const [inputs, setInputs] = React.useState({
-    tripName: '',
-    tripLocation: '',
-    tripStartDate: '',
-    tripEndDate: '',
+    planName: '',
+    startDate: '',
+    endDate: '',
   });
   const Navigate = useNavigate();
 
@@ -17,15 +18,25 @@ export const PlanTrip = (props) => {
     setInputs((inputs) => ({ ...inputs, [e.target.name]: e.target.value }));
   };
 
+  const instance = axios.create({
+    //creating axios instance to make requests to server
+    baseURL: 'http://localhost:8080',
+  });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const tripData = {
         ...inputs,
+        userID: userData.userID,
       };
-      const saveResult = await axios.post('/dashboard/save-trip', tripData);
+      const saveResult = await instance.post(
+        '/dashboard/create-trip',
+        tripData
+      );
+      const planData = saveResult.data;
       if (saveResult.status === 200) {
-        Navigate('/planDetails');
+        Navigate('/planDetails', { state: { plan: planData, email: email } });
       }
     } catch (err) {
       console.error('Error saving trip:', err);
@@ -43,7 +54,7 @@ export const PlanTrip = (props) => {
           <div className='input-trip'>
             <input
               className='trip-name-input'
-              name='tripName'
+              name='planName'
               type='text'
               placeholder='Name'
               required
@@ -53,9 +64,9 @@ export const PlanTrip = (props) => {
           <div className='input-trip'>
             <input
               className='start-date-input'
-              name='tripStartDate'
+              name='startDate'
               type='text'
-              placeholder='Start Date'
+              placeholder='Start Date (DD/MM/YYYY)'
               required
               onChange={handleChange}
             />
@@ -63,15 +74,15 @@ export const PlanTrip = (props) => {
           <div className='input-trip'>
             <input
               className='end-date-input'
-              name='tripEndDate'
+              name='endDate'
               type='text'
-              placeholder='End Date'
+              placeholder='End Date (DD/MM/YYYY)'
               required
               onChange={handleChange}
             />
           </div>
           <div className='input-trip-button'>
-            <button className='plan-trip-button' type='submit'>
+            <button className='plan-trip-button' onClick={handleSubmit}>
               Begin Plans
             </button>
           </div>
@@ -96,9 +107,7 @@ export const PlanTrip = (props) => {
             />
           </div>
           <div className='input-button-container '>
-            <button className='invite-button' type='submit'>
-              Invite
-            </button>
+            <button className='invite-button'>Invite</button>
           </div>
         </div>
       </div>

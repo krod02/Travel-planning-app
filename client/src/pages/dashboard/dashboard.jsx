@@ -13,8 +13,9 @@ import { useNavigate } from 'react-router-dom';
 
 const Dashboard = (props) => {
   const { banner, tripImage } = props;
-  const { logout } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  const { logout } = useContext(AuthContext);
 
   const location = useLocation();
   const email = location.state.email;
@@ -31,7 +32,6 @@ const Dashboard = (props) => {
       isInitialMount.current = true;
     }
   }, [email, updateUserData]);
-  console.log(userData.firstName);
 
   if (!userData || Object.keys(userData).length === 0) {
     return <div>Loading...</div>;
@@ -75,8 +75,8 @@ const Dashboard = (props) => {
           </Space>
         </Space>
       </div>
-      <Trips userData={userData} tripImage={tripImage} />
-      <PlanTrip />
+      <Trips userData={userData} tripImage={tripImage} email={email} />
+      <PlanTrip userData={userData} email={email} />
     </div>
   );
 };

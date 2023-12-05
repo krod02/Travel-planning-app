@@ -7,6 +7,7 @@ import bannerImage from './images/banner-image.jpg';
 import tripImage from './images/new-york-trip-image.jpeg';
 import PlanDetails from './pages/planDetails/planDetails';
 import DestinationDetails from './pages/destinationDetails/destinationDetails';
+import defaultImage from './images/default-image.jpg';
 
 const router = createBrowserRouter([
   {
@@ -19,15 +20,17 @@ const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <Dashboard banner={bannerImage} tripImage={tripImage} />,
+    element: <Dashboard banner={bannerImage} tripImage={defaultImage} />,
   },
   {
     path: '/planDetails',
-    element: <PlanDetails banner={bannerImage} tripImage={tripImage} />,
+    element: <PlanDetails banner={bannerImage} tripImage={defaultImage} />,
   },
   {
     path: '/destinationDetails',
-    element: <DestinationDetails banner={bannerImage} tripImage={tripImage} />,
+    element: (
+      <DestinationDetails banner={bannerImage} tripImage={defaultImage} />
+    ),
   },
 ]);
 

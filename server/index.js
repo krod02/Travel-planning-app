@@ -7,6 +7,7 @@ import bodyParser from 'body-parser'; // used to parse incoming request bodies i
 import cookieParser from 'cookie-parser'; // used to parse cookie header and populate req.cookies with an object keyed by the cookie names
 import UserRoutes from './routes/User.js';
 import DashboardRoutes from './routes/Dashboard.js';
+import DestinationRoutes from './routes/Destinations.js';
 
 const __filename = fileURLToPath(import.meta.url); // converting module url to file path
 const __dirname = dirname(__filename); // getting directory name from file path
@@ -30,6 +31,7 @@ app.use(cookieParser());
 // Routes for user login and registration
 app.use('/user', UserRoutes);
 app.use('/dashboard', DashboardRoutes);
+app.use('/destination', DestinationRoutes);
 
 // Port server is listening on
 const PORT = process.env.PORT;
