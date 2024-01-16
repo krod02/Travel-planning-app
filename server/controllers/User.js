@@ -3,29 +3,36 @@ import CustomError from '../customError.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-// Register a new user
+// Function to register a new user
 async function register(email, password, firstName, lastName) {
-  // check if user exists
+  // Query the database to check if a user with the given email already exists
   const [user] = await db.query(`SELECT * FROM User WHERE email = ?`, [email]);
+  // If a user is found, throw a custom error indicating the user already exists
   if (user.length) {
     throw new CustomError('User already exists', 409);
   }
 
+  // Generate a salt and hash the password for secure storage
   const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(password, salt);
 
+  // Insert the new user into the database with hashed password
   const [result] = await db.query(
     `INSERT INTO User (email, password, firstName, lastName) VALUES (?, ?, ?, ?)`,
     [email, hash, firstName, lastName]
   );
+  // If the user is successfully created, return their details
   if (result.affectedRows) {
     const name = `${firstName} ${lastName}`;
     return { id: result.insertId, email, name };
   }
+  // If the user creation fails, throw a custom error
   throw new CustomError('User could not be created', 500);
 }
 
+// Function to get all user data
 async function getAllUserData(email) {
+  // Query the database to get user data and related travel plans, destinations, and points of interest
   const [data] = await db.query(
     `select u.userID, u.email, u.firstName, u.lastName, t.planID, t.planName, t.startDate, t.endDate, d.destinationID, d.destinationName, d.dateFrom, d.dateTo, d.orderInPlan, d.destinationImage, p.POIID, p.name, p.latitude, p.longitude, p.category, p.POIAddress, p.POIImage
     from User u
@@ -100,37 +107,47 @@ async function getAllUserData(email) {
   return formattedData;
 }
 
-// Login a user
+// Function to log in a user
 async function login(email, password) {
+  // Query the database to find the user by email
   const [rows] = await db.query(`SELECT * FROM User WHERE email = ?`, [email]);
+  // If no user is found, throw a custom error indicating the user does not exist
   if (rows.length === 0) {
     throw new CustomError('User does not exist', 404);
   }
   const user = rows[0];
 
+  // Check if the provided password matches the stored hash
+  // If not, throw a custom error indicating incorrect password
   if (!bcrypt.compareSync(password, user.password)) {
     throw new CustomError('Password is incorrect', 400);
   }
+
+  // Generate a JWT token for the user
   const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
     expiresIn: '1h',
   });
 
+  // Get additional user data such as travel plans
   const userData = await getAllUserData(user.email);
 
+  // Return the user data and token
   return { data: userData, token };
 }
 
+// Function to log out a user
 const logout = (req, res) => {
   try {
+    // Clear the authentication cookie
     res
       .clearCookie('access_token', {
-        //clears the cookie
         sameSite: 'none',
         secure: true,
       })
       .status(200)
       .json({ message: 'Logout successful' });
   } catch (err) {
+    // Log any server error and return an error response
     console.error(err);
     res.status(500).json({ message: 'Server error' });
   }

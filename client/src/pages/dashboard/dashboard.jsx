@@ -12,41 +12,56 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Dashboard = (props) => {
-  const { banner, tripImage } = props;
-  const navigate = useNavigate();
+    const { banner, tripImage } = props;
 
-  const { logout } = useContext(AuthContext);
+    const navigate = useNavigate();
+  
+    // Accessing the logout function from AuthContext to manage authentication state
+    const { logout } = useContext(AuthContext);
+  
+    // Hook to access the current location object, useful for reading URL state
+    const location = useLocation();
+    const email = location.state.email;
+  
+    // Custom hook to manage and access user data
+    const { userData, updateUserData } = useUser();
+  
+    // State to manage visibility of the menu
+    const [isMenuVisible, setIsMenuVisible] = useState(false);
+  
+    // Ref to track the initial mounting of the component
+    // Prevents repetitive API calls or updates on component re-renders
+    const isInitialMount = useRef(false);
+  
+    // Effect hook to update user data based on the provided email
+    // It runs only when the email or updateUserData changes
+    useEffect(() => {
+      // Check if email exists and it's the initial component mount
+      if (email && !isInitialMount.current) {
+        updateUserData(email);
 
-  const location = useLocation();
-  const email = location.state.email;
-
-  const { userData, updateUserData } = useUser();
-
-  const [isMenuVisible, setIsMenuVisible] = useState(false);
-
-  const isInitialMount = useRef(false);
-
-  useEffect(() => {
-    if (email && !isInitialMount.current) {
-      updateUserData(email);
-      isInitialMount.current = true;
+        // Set the ref to true after initial data fetch to prevent re-fetching
+        isInitialMount.current = true;
+      }
+    }, [email, updateUserData]);
+  
+    // Conditional rendering to show a loading state if userData is not available yet
+    if (!userData || Object.keys(userData).length === 0) {
+      return <div>Loading...</div>;
     }
-  }, [email, updateUserData]);
-
-  if (!userData || Object.keys(userData).length === 0) {
-    return <div>Loading...</div>;
-  }
-
-  const toggleMenu = () => {
-    setIsMenuVisible(!isMenuVisible);
-  };
-
-  const handleLogout = async (e) => {
-    //this is the function that handles the logout
-    e.preventDefault();
-    await logout();
-    navigate('/');
-  };
+  
+    // Function to toggle the visibility of the menu
+    const toggleMenu = () => {
+      // Sets the state to the opposite of its current value
+      setIsMenuVisible(!isMenuVisible);
+    };
+  
+    // Function to handle logout process
+    const handleLogout = async (e) => {
+      e.preventDefault(); 
+      await logout(); 
+      navigate('/'); 
+    };
 
   return (
     <div className='dashboard screen'>

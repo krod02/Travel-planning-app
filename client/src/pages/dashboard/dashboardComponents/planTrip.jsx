@@ -4,44 +4,54 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export const PlanTrip = (props) => {
-  const { userData, email } = props;
+const { userData, email } = props;
 
-  const [inputs, setInputs] = React.useState({
-    planName: '',
-    startDate: '',
-    endDate: '',
-  });
-  const Navigate = useNavigate();
+// State hook for managing input fields. Initialized with empty values.
+const [inputs, setInputs] = React.useState({
+  planName: '',
+  startDate: '',
+  endDate: '',
+});
 
-  const handleChange = (e) => {
-    // updating state of inputs wnen they change
-    setInputs((inputs) => ({ ...inputs, [e.target.name]: e.target.value }));
-  };
+const Navigate = useNavigate();
 
-  const instance = axios.create({
-    //creating axios instance to make requests to server
-    baseURL: 'http://localhost:8080',
-  });
+// Function to handle changes in input fields
+const handleChange = (e) => {
+  // Update the inputs state based on the input field's name and its new value
+  // Uses functional update to correctly update the state based on the previous state
+  setInputs((inputs) => ({ ...inputs, [e.target.name]: e.target.value }));
+};
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const tripData = {
-        ...inputs,
-        userID: userData.userID,
-      };
-      const saveResult = await instance.post(
-        '/dashboard/create-trip',
-        tripData
-      );
-      const planData = saveResult.data;
-      if (saveResult.status === 200) {
-        Navigate('/planDetails', { state: { plan: planData, email: email } });
-      }
-    } catch (err) {
-      console.error('Error saving trip:', err);
+// Creating an axios instance with a base URL for making HTTP requests
+const instance = axios.create({
+  baseURL: 'http://localhost:8080',
+});
+
+// Function to handle form submission
+const handleSubmit = async (e) => {
+  e.preventDefault(); 
+
+  try {
+    // Constructing the trip data object from inputs and the user's ID
+    const tripData = {
+      ...inputs,
+      userID: userData.userID,
+    };
+
+    // Sending a POST request to create a new trip, passing the trip data
+    const saveResult = await instance.post('/dashboard/create-trip', tripData);
+
+    const planData = saveResult.data;
+
+    if (saveResult.status === 200) {
+      // Navigate to the plan details page, passing plan data and email as state
+      Navigate('/planDetails', { state: { plan: planData, email: email } });
     }
-  };
+  } catch (err) {
+    console.error('Error saving trip:', err);
+  }
+};
+
 
   return (
     <div className='plan-trip'>
