@@ -443,18 +443,17 @@
 .open-plans {
   color: #c98c70;
   font-family: var(--cabin);
-  font-size: 15px;
+  font-size: 13px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   background-color: #314357;
   border: 2px solid #314357;
   border-radius: 7px;
-  padding: 3px 15px 3px 15px;
+  padding: 3px 13px 3px 13px;
   cursor: pointer;
   outline: none;
   transition: all 0.2s ease-in-out;
-  margin-right: 1vw;
 }
 
 .open-plans:hover {
