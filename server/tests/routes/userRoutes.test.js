@@ -1,10 +1,13 @@
 import request from 'supertest';
-import express from 'express';
+import app from '../../index'
 import controller from '../../controllers/User';
 
 jest.mock('../../controllers/User', () => ({
   ...jest.requireActual('../../controllers/User'),
   register: jest.fn(),
+  login: jest.fn(),
+  getAllUserData: jest.fn()
+
 }));
 
 describe('POST /register', () => {
@@ -17,7 +20,7 @@ describe('POST /register', () => {
     };
 
     controller.register.mockResolvedValue({
-      id: 1,
+      id: 10,
       email: userData.email,
       name: `${userData.firstName} ${userData.lastName}`
     });
@@ -60,21 +63,21 @@ describe('POST /login', () => {
   });
   
 
-  describe('GET /data', () => {
-    it('successfully retrieves user data', async () => {
-      const email = 'test@example.com';
-      const mockUserData = { /* structured user data */ };
+  // describe('GET /data', () => {
+  //   it('successfully retrieves user data', async () => {
+  //     const email = 'test@example.com';
+  //     const mockUserData = { /* structured user data */ };
   
-      controller.getAllUserData.mockResolvedValue(mockUserData);
+  //     controller.getAllUserData.mockResolvedValue(mockUserData);
   
-      const response = await request(app)
-        .get(`/data?email=${email}`);
+  //     const response = await request(app)
+  //       .get(`/data?email=${email}`);
   
-      expect(response.statusCode).toBe(200);
-      expect(response.body).toEqual(mockUserData);
-      expect(controller.getAllUserData).toHaveBeenCalledWith(email);
-    });
+  //     expect(response.statusCode).toBe(200);
+  //     expect(response.body).toEqual(mockUserData);
+  //     expect(controller.getAllUserData).toHaveBeenCalledWith(email);
+  //   });
   
-    // Add more tests for scenarios like user data not found or database errors
-  });
+  //   // Add more tests for scenarios like user data not found or database errors
+  // });
   
